@@ -3,6 +3,8 @@ var answerSelection1 = document.getElementById("answers1")
 var answerSelection2 = document.getElementById("answers2") 
 var answerSelection3 = document.getElementById("answers3") 
 var answerSelection4 = document.getElementById("answers4") 
+var answerSelection3 = document.getElementById("answers5") 
+var answerSelection4 = document.getElementById("answers6") 
 
 var currentQuestion = 0; //this will need to be increase by 1
 
@@ -25,9 +27,38 @@ function setQuestion(currentQuestion) {
        answerSelection4.textContent = answers1[3];
     }
     if (currentQuestion == 1) {
-        
+        answerSelection1.textContent = answers2[0];
+        answerSelection2.textContent = answers2[1];
+        answerSelection3.textContent = answers2[2];
+        answerSelection4.textContent = answers2[3];
+    }
+    if (currentQuestion == 2) {
+        answerSelection1.textContent = answers3[0];
+        answerSelection2.textContent = answers3[1];
+        answerSelection3.textContent = answers3[2];
+        answerSelection4.textContent = answers3[3];
+    }
+    if (currentQuestion == 3) {
+        answerSelection1.textContent = answers4[0];
+        answerSelection2.textContent = answers4[1];
+        answerSelection3.textContent = answers4[2];
+        answerSelection4.textContent = answers4[3];
+    }
+    if (currentQuestion == 4) {
+        answerSelection1.textContent = answers5[0];
+        answerSelection2.textContent = answers5[1];
+        answerSelection3.textContent = answers5[2];
+        answerSelection4.textContent = answers5[3];
+    }
+    if (currentQuestion == 5) {
+        answerSelection1.textContent = answers6[0];
+        answerSelection2.textContent = answers6[1];
+        answerSelection3.textContent = answers6[2];
+        answerSelection4.textContent = answers6[3];
     }
 }
+
+
  if (answer1 === answer1);
  // progress the quiz say it right
 
