@@ -8,6 +8,7 @@ var questionAnswers4 = ["1. Prompt()", "2. selection()", "3. moveTo()", "4. scro
 var questionAnswers5 = ["1. </title>", "2. <head>", "3. <page>", "4. <title>"];
 var questionAnswers6 = ["1. <a href=('')></a>", "2. <a href('')></a>", "3. <a href=()></a>", "4. <a href=('')><a>"];
 var answers = [2,0,3,2,3,0]; //using the answers from all six answer arrays, and the question headers
+var list = JSON.parse(localStorage.getItem('list'))||[];
 
 
 var answerSelection1 = document.getElementById('answer1') 
@@ -28,8 +29,10 @@ var timer;
 
 //starts quiz
 var startQuizBtn = document.getElementById("generate");
+var submitBtn = document.getElementById('submit')
 startQuizBtn.addEventListener("click", function() {
     startQuizBtn.setAttribute("style", "display:none;");
+    submitBtn.setAttribute("style", "display:none;");
     startGame();
     setQuestionHeader();
     setQuestion();
@@ -101,6 +104,7 @@ function progressQuiz() { //call setQuestionText using addEventListner to change
         answerSelection4.setAttribute("style", "display:none;");  
         pickedAnswer.setAttribute("style", "display:none;");
         ending.setAttribute("style", "display:block;");
+        submitBtn.setAttribute('style', "display:inline;")
     }
 }
 
@@ -169,17 +173,15 @@ function displayMessage(type, message) {
 }
 
 
-var submitBtn = document.getElementById('submit')
 submitBtn.addEventListener('click', function(event){
     event.preventDefault();
 var entry = document.getElementById('score').value;
     localStorage.setItem("entry", entry);
+    list.push(entry + ": " + timeLeft);
+    localStorage.setItem("list", JSON.stringify(list))
     console.log(entry)
 });
 
-function storeInfo() {
-    localStorage.setItem("submit", JSON.stringify(entry))
-}
 
 
 //Think about how to store each answer right or wrong //How do i tell what button was clicked and compare to the answer
