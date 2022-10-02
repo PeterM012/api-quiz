@@ -1,64 +1,106 @@
 //question arrays
-var questionHeaders = ["What does RGB stand for?","What are Pseudo Classes?","What are JavaScript Date Types","Which of the following is a Window Object Method?","What tag is used to change the title of a webpage?","What is the correct way to write an reference?"]
+var questionHeaders = ["What does RGB stand for?","What are Pseudo Classes?","What are JavaScript Date Types","Which of the following is a Window Object Method?","What tag is used to start the title?","What is the correct way to write an reference?"]
 //answer arrays
-var questionAnswers1 = ["red,blue,green", "red giant branch", "red-blue-green", "robust graphics booster"];
-var questionAnswers2 = [":picture-in-picture", ":enable", "::hover", ":what"];
-var questionAnswers3 = ["Defined type", "Letter Type", "Noll type", "Symbol type"];
-var questionAnswers4 = ["Prompt()", "selection()", "moveTo()", "scrollWith()"];
-var questionAnswers5 = ["</title>", "<head>", "<title>", "<page>"];
-var questionAnswers6 = ["<a href=('')></a>", "<a href('')></a>", "<a href=()></a>", "<a href=('')><a>"];
-var answers = [2,0,]; //using the answers from all six answer arrays, and the question headers
+var questionAnswers1 = ["1. red,blue,green", "2. red giant branch", "3. red-blue-green", "4. robust graphics booster"];
+var questionAnswers2 = ["1. :picture-in-picture", "2. :enable", "3. ::hover", "4. :what"];
+var questionAnswers3 = ["1. Defined type", "2. Letter Type", "3. Noll type", "4. Symbol type"];
+var questionAnswers4 = ["1. Prompt()", "2. selection()", "3. moveTo()", "4. scrollWith()"];
+var questionAnswers5 = ["1. </title>", "2. <head>", "3. <page>", "4. <title>"];
+var questionAnswers6 = ["1. <a href=('')></a>", "2. <a href('')></a>", "3. <a href=()></a>", "4. <a href=('')><a>"];
+var answers = [2,0,3,2,3,0]; //using the answers from all six answer arrays, and the question headers
+
 
 var answerSelection1 = document.getElementById('answer1') 
 var answerSelection2 = document.getElementById('answer2') 
 var answerSelection3 = document.getElementById('answer3') 
 var answerSelection4 = document.getElementById('answer4') 
 var currentQuestion = 0; //this will need to be increase by 1
+var timeRemaining  = document.getElementById('time-remaining');
+var pickedAnswer = document.getElementById('choice')
+
+
+
+var ending = document.getElementById('input-group'); 
+
+
+var timeLeft = 90;
+var timer;
+
 
 //starts quiz
 var startQuizBtn = document.getElementById("generate");
 startQuizBtn.addEventListener("click", function() {
+    startQuizBtn.setAttribute("style", "display:none;");
+    startGame();
     setQuestionHeader();
     setQuestion();
+    answerSelection1.setAttribute("style", "display:inline"); 
+    answerSelection2.setAttribute("style", "display:inline;"); 
+    answerSelection3.setAttribute("style", "display:inline;"); 
+    answerSelection4.setAttribute("style", "display:inline;"); 
+
 });
 // buttons for answer selections //create event listeners for answer buttons
 answerSelection1.addEventListener('click', function() {
     if(answers[currentQuestion] == 0) {
+        // Code here gets ran when the answer is correct
+        pickedAnswer.textContent = "Correct"
+    } 
+    else {
+        // Code here gets ran when the answer is wrong
+        pickedAnswer.textContent = "Wrong"
+        timeLeft-=15
 
-    } else {
- 
     }
     progressQuiz()
 });
 answerSelection2.addEventListener('click', function() {
     if(answers[currentQuestion] == 1) {
-
-    } else {
-
+        pickedAnswer.textContent = "Correct"
+    } 
+    else {
+        pickedAnswer.textContent = "Wrong"
+        timeLeft-=15
     }
     progressQuiz()
 });
 answerSelection3.addEventListener('click', function() {
     if(answers[currentQuestion] == 2) {
-
-    } else {
-
+        pickedAnswer.textContent = "Correct"
+    } 
+    else {
+        pickedAnswer.textContent = "Wrong"
+        timeLeft-=15
     }
     progressQuiz()
 });
 answerSelection4.addEventListener('click', function() {
     if(answers[currentQuestion] == 3) {
-
-    } else {
-
+        pickedAnswer.textContent = "Correct"
+    } 
+    else {
+        pickedAnswer.textContent = "Wrong"
+        timeLeft-=15
     }
     progressQuiz()
 });
 
 function progressQuiz() { //call setQuestionText using addEventListner to change to next question
+    if(currentQuestion < 5){
     currentQuestion++; //This should be used when clicking an answer button
     setQuestionHeader();
     setQuestion();
+}
+    else{ 
+        ending.setAttribute("style", "display:block;");
+        var newQuestion = document.getElementById('questions');
+        newQuestion.setAttribute("style", "display:none;");
+        answerSelection1.setAttribute("style", "display:none;"); 
+        answerSelection2.setAttribute("style", "display:none;"); 
+        answerSelection3.setAttribute("style", "display:none;"); 
+        answerSelection4.setAttribute("style", "display:none;");  
+        pickedAnswer.setAttribute("style", "display:none;");  
+    }
 }
 
 // sets header questions
@@ -106,6 +148,52 @@ function setQuestion() {
     }
 }
 
+function startGame() {
+    timeRemaining.textContent = timeLeft;
+    timer = setInterval(function() {
+        if (timeLeft > 0) {
+            timeLeft--;
+        } 
+        else {
+            clearInterval(timer);
+            updateLosses();
+            message = alert("Out of Time.Try Again");
+        }
+        timeRemaining.textContent = timeLeft;
+    }, 1000);
+
+}
+
+
+
+function updateWins() {
+    wins++;
+    w.textContent = "Wins: " + wins;
+    localStorage.setItem("wins", wins);
+}
+
+function updateLosses() {
+    losses++;
+    l.textContent = "Losses: " + losses;
+    localStorage.setItem("losses", losses);
+}
+
+wins = localStorage.getItem('wins');
+if(wins != null) {
+    w.textContent = "Wins: " + wins;
+}
+
+losses = localStorage.getItem('losses');
+if(losses != null) {
+    l.textContent = "Losses: " + losses;
+}
+
+function newGame() {
+    wins = -1;
+    losses = -1;
+    updateLosses();
+    updateWins();
+}
 
 
 //Think about how to store each answer right or wrong //How do i tell what button was clicked and compare to the answer

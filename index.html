@@ -1,35 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>API Quiz</title>
-    <link rel="stylesheet" href="./assets/css/style.css" />
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Full Stack Beginner Quiz</h1>
-      </header>
-      <div class="card">
-        <div class="card-header">
-          <h4>This Quiz is to evaluate your knowledge of Full Stack Developer basics. You will be given a time of 1:30. A penalty of -15 seconds will occur for incorrect answers. Please select "Start Quiz" to Begin.</h4>
-        </div>
-        <div class="card-body">       
-        </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>API Quiz</title>
+  <link rel="stylesheet" href="./assets/css/style.css" />
+</head>
+
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>Full Stack Beginner Quiz</h1>
+    </header>
+    <div class="card">
+      <div class="card-header">
+        <h4>This Quiz is to evaluate your knowledge of Full Stack Developer basics. You will be given a time of 90. A
+          penalty of -15 seconds will occur for incorrect answers. Please select "Start Quiz" to Begin.</h4>
+      </div>
+      <div class="card-body">
+        <div>
+          <h3 id="questions"></h3>
+          <button class="buttons" id="answer1"></button>
+          <button class="buttons" id="answer2"></button>
+          <button class="buttons" id="answer3"></button>
+          <button class="buttons" id="answer4"></button>
+          <h4 id="choice"></h4>
+           <div id="input-group">
+              <h3 id="information">
+              <label for="score">Total Score</label>
+              <br>
+              <input type="text" name="score" id="score" placeholder="Score" />
+              <br>
+              <label for="enter">Initals</label>
+              <br>
+              <input type="text" name="enter" id="enter" placeholder="Initals" />
+              </h3>
+              <h2>Leaders</h2>
+            </div>
         <div class="card-footer">
           <button id="generate" class="btn">Start Quiz</button>
+          <div>
+            <h1 id="time-remaining">90</h1>
+          </div>
         </div>
       </div>
-       <div>
-        <h3 id="questions"></h3>
-         <button id="answer1"></button>
-         <button id="answer2"></button>
-         <button id="answer3"></button>
-         <button id="answer4"></button>
-       </div>
     </div>
     <script src="./assets/js/script.js"></script>
-  </body>
+</body>
+
 </html>
