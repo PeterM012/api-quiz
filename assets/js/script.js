@@ -1,5 +1,5 @@
 //question arrays
-var questionHeaders = ["What does RGB stand for?","What are Pseudo Classes?","What are JavaScript Date Types","Which of the following is a Window Object Method?","What tag is used to start the title?","What is the correct way to write an reference?"]
+var questionHeaders = ["1. What does RGB stand for?","2. What are Pseudo Classes?","3. What are JavaScript Date Types","4. Which of the following is a Window Object Method?","5. What tag is used to start the title?","6. What is the correct way to write an reference?"]
 //answer arrays
 var questionAnswers1 = ["1. red,blue,green", "2. red giant branch", "3. red-blue-green", "4. robust graphics booster"];
 var questionAnswers2 = ["1. :picture-in-picture", "2. :enable", "3. ::hover", "4. :what"];
@@ -19,11 +19,10 @@ var timeRemaining  = document.getElementById('time-remaining');
 var pickedAnswer = document.getElementById('choice')
 
 
-
 var ending = document.getElementById('input-group'); 
 
 
-var timeLeft = 90;
+var timeLeft = 59;
 var timer;
 
 
@@ -40,6 +39,8 @@ startQuizBtn.addEventListener("click", function() {
     answerSelection4.setAttribute("style", "display:inline;"); 
 
 });
+
+
 // buttons for answer selections //create event listeners for answer buttons
 answerSelection1.addEventListener('click', function() {
     if(answers[currentQuestion] == 0) {
@@ -92,14 +93,14 @@ function progressQuiz() { //call setQuestionText using addEventListner to change
     setQuestion();
 }
     else{ 
-        ending.setAttribute("style", "display:block;");
         var newQuestion = document.getElementById('questions');
         newQuestion.setAttribute("style", "display:none;");
         answerSelection1.setAttribute("style", "display:none;"); 
         answerSelection2.setAttribute("style", "display:none;"); 
         answerSelection3.setAttribute("style", "display:none;"); 
         answerSelection4.setAttribute("style", "display:none;");  
-        pickedAnswer.setAttribute("style", "display:none;");  
+        pickedAnswer.setAttribute("style", "display:none;");
+        ending.setAttribute("style", "display:block;");
     }
 }
 
@@ -156,43 +157,28 @@ function startGame() {
         } 
         else {
             clearInterval(timer);
-            updateLosses();
             message = alert("Out of Time.Try Again");
         }
         timeRemaining.textContent = timeLeft;
     }, 1000);
+}
 
+function displayMessage(type, message) {
+    msgDiv.textContent = message;
+    msgDiv.setAttribute("class", type);
 }
 
 
+var submitBtn = document.getElementById('submit')
+submitBtn.addEventListener('click', function(event){
+    event.preventDefault();
+var entry = document.getElementById('score').value;
+    localStorage.setItem("entry", entry);
+    console.log(entry)
+});
 
-function updateWins() {
-    wins++;
-    w.textContent = "Wins: " + wins;
-    localStorage.setItem("wins", wins);
-}
-
-function updateLosses() {
-    losses++;
-    l.textContent = "Losses: " + losses;
-    localStorage.setItem("losses", losses);
-}
-
-wins = localStorage.getItem('wins');
-if(wins != null) {
-    w.textContent = "Wins: " + wins;
-}
-
-losses = localStorage.getItem('losses');
-if(losses != null) {
-    l.textContent = "Losses: " + losses;
-}
-
-function newGame() {
-    wins = -1;
-    losses = -1;
-    updateLosses();
-    updateWins();
+function storeInfo() {
+    localStorage.setItem("submit", JSON.stringify(entry))
 }
 
 
