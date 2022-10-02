@@ -1,5 +1,6 @@
 //question arrays
 var questionHeaders = ["1. What does RGB stand for?","2. What are Pseudo Classes?","3. What are JavaScript Date Types","4. Which of the following is a Window Object Method?","5. What tag is used to start the title?","6. What is the correct way to write an reference?"]
+
 //answer arrays
 var questionAnswers1 = ["1. red,blue,green", "2. red giant branch", "3. red-blue-green", "4. robust graphics booster"];
 var questionAnswers2 = ["1. :picture-in-picture", "2. :enable", "3. ::hover", "4. :what"];
@@ -8,9 +9,13 @@ var questionAnswers4 = ["1. Prompt()", "2. selection()", "3. moveTo()", "4. scro
 var questionAnswers5 = ["1. </title>", "2. <head>", "3. <page>", "4. <title>"];
 var questionAnswers6 = ["1. <a href=('')></a>", "2. <a href('')></a>", "3. <a href=()></a>", "4. <a href=('')><a>"];
 var answers = [2,0,3,2,3,0]; //using the answers from all six answer arrays, and the question headers
+
+//set the local storage in a list
 var list = JSON.parse(localStorage.getItem('list'))||[];
 
-
+//grabs the elements for the HTML 
+var scoreList = document.getElementById("points")
+var cardHeader = document.getElementById('top')
 var answerSelection1 = document.getElementById('answer1') 
 var answerSelection2 = document.getElementById('answer2') 
 var answerSelection3 = document.getElementById('answer3') 
@@ -18,14 +23,9 @@ var answerSelection4 = document.getElementById('answer4')
 var currentQuestion = 0; //this will need to be increase by 1
 var timeRemaining  = document.getElementById('time-remaining');
 var pickedAnswer = document.getElementById('choice')
-
-
 var ending = document.getElementById('input-group'); 
-
-
-var timeLeft = 59;
+var timeLeft = 60;
 var timer;
-
 
 //starts quiz
 var startQuizBtn = document.getElementById("generate");
@@ -105,13 +105,15 @@ function progressQuiz() { //call setQuestionText using addEventListner to change
         pickedAnswer.setAttribute("style", "display:none;");
         ending.setAttribute("style", "display:block;");
         submitBtn.setAttribute('style', "display:inline;")
+        clearInterval(timer);
+        timeRemaining.textContent = timeLeft;
     }
 }
 
 // sets header questions
 function setQuestionHeader() {
     var newQuestion = document.getElementById('questions');    
-    newQuestion.textContent =  questionHeaders[currentQuestion];  
+    newQuestion.textContent =  questionHeaders[currentQuestion]; 
 }
 
 function setQuestion() {
@@ -153,35 +155,41 @@ function setQuestion() {
     }
 }
 
+
+//starts the timer when the game starts
 function startGame() {
-    timeRemaining.textContent = timeLeft;
     timer = setInterval(function() {
         if (timeLeft > 0) {
             timeLeft--;
+            timeRemaining.textContent = timeLeft;
         } 
         else {
             clearInterval(timer);
             message = alert("Out of Time.Try Again");
         }
-        timeRemaining.textContent = timeLeft;
+        if (currentQuestion > 5){
+            clearInterval(timer);
+            timeRemaining.textContent = timeLeft;
+        }
     }, 1000);
 }
 
-function displayMessage(type, message) {
-    msgDiv.textContent = message;
-    msgDiv.setAttribute("class", type);
-}
-
-
+//this is the submit button that allows the player to save and check scores 
 submitBtn.addEventListener('click', function(event){
     event.preventDefault();
+    cardHeader.setAttribute('style', "display: none;");
+    var j = 5
 var entry = document.getElementById('score').value;
     localStorage.setItem("entry", entry);
     list.push(entry + ": " + timeLeft);
     localStorage.setItem("list", JSON.stringify(list))
     console.log(entry)
+for (let i = 0; i < 5; i++) { 
+    let li=document.createElement("li");
+    scoreList.appendChild(li);
+    li.textContent=list[list.length-j]
+    j--
+    }
+    submitBtn.setAttribute('style', "display: none;");
 });
 
-
-
-//Think about how to store each answer right or wrong //How do i tell what button was clicked and compare to the answer

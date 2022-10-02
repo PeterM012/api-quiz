@@ -67,6 +67,15 @@ header {
   padding: 30px 40px;
 }
 
+#points {
+   background-color: #e0d9f6;
+   color:#586ae2;
+   font-size: 20px;
+   margin-left: 35%;
+   margin-bottom: 3%;
+   width: 30%;
+}
+
 .card-header::after {
   content: "";
   display: block;
@@ -115,6 +124,23 @@ h4 {
   padding: 14px 34px;
   text-align: center;
   cursor: pointer;
+}
+
+.button {
+  border: none;
+  background-color: #586ae2;
+  border-radius: 25px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px
+    0px;
+  color: #e0d9f6;
+  display: inline-block;
+  font-size: 22px;
+  line-height: 22px;
+  margin: 16px 16px 16px 20px;
+  padding: 14px 34px;
+  text-align: center;
+  cursor: pointer;
+  display: none;
 }
 
 button[disabled] {

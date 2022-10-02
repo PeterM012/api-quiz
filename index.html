@@ -15,7 +15,7 @@
       <h1>Full Stack Beginner Quiz</h1>
     </header>
     <div class="card">
-      <div class="card-header">
+      <div class="card-header" id="top">
         <h4>This Quiz is to evaluate your knowledge of Full Stack Developer basics. You will be given a time of 90. A
           penalty of -15 seconds will occur for incorrect answers. Please select "Start Quiz" to Begin.</h4>
       </div>
@@ -34,9 +34,10 @@
               <input type="text" name="score" id="score" placeholder="Score" />
               <br>
               <h2>Leaders</h2>
+              <ul id="points"></ul>
             </div>
           <div class="card-footer">
-          <button id="submit" class="btn">Submit</button>
+          <button id="submit" class="button">Submit</button>
           <button id="generate" class="btn">Start Quiz</button>
           <div>
             <h1 id="time-remaining">60</h1>
