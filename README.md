@@ -4,7 +4,7 @@
 https://peterm012.github.io/api-quiz/
 
 ## Site Picture
-![](API Quiz.gif)
+! [] (API Quiz.gif)
 
 ## Technologies Used
 - HTML - Used to create elements on the DOM
