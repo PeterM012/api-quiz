@@ -4,7 +4,7 @@
 https://peterm012.github.io/api-quiz/
 
 ## Site Picture 
-![image](https://user-images.githubusercontent.com/110750833/192899393-17f0b1cc-6754-403f-8b3d-1b4bd1218ac8.png)
+
 
 ## Technologies Used
 - HTML - Used to create elements on the DOM
