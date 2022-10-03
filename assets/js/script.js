@@ -24,7 +24,7 @@ var currentQuestion = 0; //this will need to be increase by 1
 var timeRemaining  = document.getElementById('time-remaining');
 var pickedAnswer = document.getElementById('choice')
 var ending = document.getElementById('input-group'); 
-var timeLeft = 60;
+var timeLeft = 61;
 var timer;
 
 //starts quiz
