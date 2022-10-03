@@ -3,8 +3,8 @@
 ## Deployed Link
 https://peterm012.github.io/api-quiz/
 
-## Site Picture 
-![]https://github.com/PeterM012/api-quiz/blob/main/API%20Quiz.gif
+## Site Picture
+![](API Quiz.gif)
 
 ## Technologies Used
 - HTML - Used to create elements on the DOM
